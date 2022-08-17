@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบจัดการส่งข้อมูลบ้าน</title>
+</head>
+
+<!-- CSS LOAD START -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+
+<!-- JAVASCRIPT LOAD START -->
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="locales/bootstrap-datepicker.th.min.js"></script>
+<body><script> 
+ 
+function cknoroom(text){
+  data = '<?php cknoroom()?>';
+  const cknoroom = JSON.parse(data);
+  try  
+{  
+  var country = cknoroom.find(el => el.noroom === text);
+  // console.log(Object.keys(country).length ); 
+  if(Object.keys(country).length >=1){
+  return true; 
+}
+}
+catch(err)
+{
+  return false; 
+}
+return false; 
+}
+ 
+</script>
+  <div class="container-sm ">
+      <h3>เพิ่มกำลังพล</h3>
+ <nav aria-label="breadcrumb">
+
+  <ol  class="breadcrumb">
+    <!-- <li class="breadcrumb-item"><a href="">หน้าแรก</a> </li> -->
+    <li class="breadcrumb-item"><a href="?view=list&page=housing">รายการ</a> </li>
+    <li class="breadcrumb-item active" aria-current="page"> เพิ่มข้อมูล </li>
+  </ol>
+  
+ </nav>
+
+      <hr> <form action="" method="post" id="form1" name="form1"  enctype="multipart/form-data">
+      <div class="row row-cols-auto">
+        <div class="btn-group col-12 row">
+        <div class=" col-auto col-12  col-lg-5 pe-lg-4 row  ">
+        
+            <label class="form-label   mt-3">เลขที่บ้าน</label>
+       
+     
+            <input type="text" class="form-control form-text  <?php echo @$err['noroom'];?> " name="noroom" id="noroom" placeholder="เลขที่บ้าน" value="<?php echo @$noroom?>" required>
+         
+          </div>
+          <script>
+            
+            $("#noroom").change(function(){
+              $("#noroom").next('p').remove();
+              $("#noroom").addClass("alert-success");
+            $("#noroom").removeClass("alert-danger");
+             if(cknoroom($("#noroom").val())===true) {
+              $( "input,select,button,textarea" ).prop( "disabled", true );
+              $("#noroom" ).prop( "disabled", false );
+
+                   $("#noroom").removeClass("alert-success");
+              $("#noroom").addClass("alert-danger");
+              $("#noroom").after("<p class=' text-danger'>เลขที่บ้าน มีอยู่ในระบบแล้ว กรุณากรอกใหม่อีกครั้ง</p>");
+             }else{
+              $("input,select,button,textarea" ).prop( "disabled", false );
+             
+             }
+});
+          </script>
+         
+<div class=" col-auto col-12  col-lg-6  row ">
+  <label class="form-label mt-3">เขต</label>
+  <select class="form-control form-select form-select-lg btn border-secondary  " name="housingrow" id="housingrow">
+    <option     value="1">ประทวน</option>
+    <option    value="2">สัญญาบัตร</option>
+     
+</select>
+  <!-- <input type="text" class="form-control form-text  <?php echo @$err['affiliation'];?> " name="affiliation" id="affiliation" placeholder="เขต" value="<?php echo @$affiliation?>" required> -->
+</div>
+</div>
+
+<div class=" col-auto col-12  col-lg-4  row pe-lg-4 ">
+    <label class="form-label mt-3 col-12  ">สถานะ</label>
+    <select class="form-control form-select form-select-lg btn     col-12  "   name="status" id="status" >
+      <option class=" btn  btn-success "  <?php echo (@$status=="1" ? "selected" : " " ) ?>  value="1"><?php echo status(1)?></option>
+      <option class="btn btn-secondary" <?php echo (@$status=="2" ? "selected" : " " ) ?> value="2"><?php echo  status(2)?></option>
+      <option class="btn btn-warning " <?php echo (@$status=="3" ? "selected" : " " ) ?> value="3"><?php echo status(3)?></option>
+      <option class="btn btn-danger" <?php echo (@$status=="4" ? "selected" : " " ) ?> value="4"><?php echo status(4)?></option>
+  </select>
+  <script>
+     $(document).ready(function () {
+      mystatus();
+     });
+      $("#status").change( function(){
+      mystatus();
+    } );
+  function mystatus(vals = $("#status").val()){
+//  console.log(this.value );
+$("#idcard").removeAttr('required');
+$(".users").hide();
+     $("#status").removeClass("btn-success");
+     $("#status").removeClass("btn-primary");
+     $("#status").removeClass("btn-warning");
+     $("#status").removeClass("btn-danger");
+    
+    switch (vals) {
+        case "1":
+        $("#status").addClass("btn-success");
+        break;
+        case "2":
+        $("#status").addClass("btn-secondary");
+     
+        $(".users").show();
+    
+
+        $("#idcard").attr('required', 'required');
+        break;
+        case "3":
+        $("#status").addClass("btn-warning");
+        break;
+        case "4":
+        $("#status").addClass("btn-danger");
+        break;
+      default:
+        break;
+    }
+  }
+  
+  </script>
+    <!-- <input type="text" class="form-control form-text    "<?php echo @$err['affiliation'];?> " name="affiliation" id="affiliation" placeholder="เขต" value="<?php echo @$affiliation?>" required> -->
+  </div>   
+  <div class=" col-auto col-12  col-lg-5  row users ps-lg-5  " style="display: none;" >
+    <label class="form-label mt-3 col-12  ">ผู้เข้าพัก</label>
+    <input class="form-control <?php echo @$err['idcard'];?>" list="datalistOptions" id="idcard" name="idcard" value="<?php echo @$idcard?>"  placeholder="ชื่อหรือ รหัสประชาชน ผู้เข้าพัก"  >
+    <datalist id="datalistOptions"> 
+      <?php echo tb_user() ;?>
+    </datalist>
+    
+</div>
+  <div class=" col-auto col-12  col-lg-12 pt-5   ">
+  
+       
+   
+          <div class="d-flex  col-auto col-12 col-lg-8"><button class="btn-lg btn-primary  mt-2" type="submit">บันทึก</button></div>
+      
+        </div>  </form>
+       
+       
+  </div> 
+ 
+  <script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>

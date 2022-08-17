@@ -1,0 +1,54 @@
+<style>
+    textarea[disabled]{
+        border: none !important;
+        background-color: white;
+        color: black;
+    }
+    div.ariapaper{
+        border: 1px inset  ; border-color: black   ;   background-color: white;
+    }
+ 
+
+    @media print {
+  /* @page {
+    margin: 2.5cm;
+    size: A4 landscape;  
+  } */
+    @page {
+    margin: 2.5cm;
+    size: A4  ;  
+  }
+  nav {
+    display:none !important;
+  }
+     .menu-bg {
+    display:none !important;
+  }
+  .btn{
+    display:none !important;
+  }
+  div.ariapaper{
+   padding: 0px !important;
+   margin: 0px !important;
+     border: none !important;
+    width: 210mm !important; 
+   margin-top: 0px !important;
+  }
+     .alert{
+        display:none !important;
+  }
+}
+</style>
+<?php
+
+?>
+<button class="btn btn-primary" onclick="print()">พิมพ์</button>
+<div class="ariapaper" style="">
+<h1 class="text-center">รายงานข้อมูลผู้เข้าพัก</h1>
+มีผู้เข้าพักทั้หมด <?=$countrow;?> คน
+ <table class="table table-ariapaper"   > 
+     <thead><tr><td>รหัส13หลัก</td><td>ชื่อ-นามสกุล</td><td>เพศ</td><td>วันเกิด</td><td>gmail</td><td>เบอร์โทร</td></tr></thead>
+     <?=$tables?>
+     </table>
+    
+</div>

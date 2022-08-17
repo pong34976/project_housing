@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เพิ่ม</title>
+  </head>
+
+<!-- CSS LOAD START -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+  
+  <link rel="stylesheet" href="css/icon/bootstrap-icons.css">
+  <script src="js/bootstrap.min.js"></script>
+  <!-- JAVASCRIPT LOAD START -->
+  <script src="js/jquery-3.6.0.min.js"></script>
+  <script src="js/bootstrap-datepicker.min.js"></script>
+  <script src="locales/bootstrap-datepicker.th.min.js"></script>
+ 
+  <body> 
+    <div class="container-sm ">
+      <h3>เพิ่ม</h3>
+      <nav aria-label="breadcrumb">
+
+      <ol  class="breadcrumb">
+      <!-- <li class="breadcrumb-item"><a href="">หน้าแรก</a> </li> -->
+      <li class="breadcrumb-item"><a href="?view=list&page=damaged">รายการ</a> </li>
+      <li class="breadcrumb-item active" aria-current="page"> เพิ่มข้อมูล </li>
+      </ol>
+        
+      </nav>
+      
+      <hr> <form action="" method="post" id="form1" name="form1"  enctype="multipart/form-data">
+        <div class="row row-cols-auto">
+        <input type="text" name="dam_id" value="<?php echo $_GET['vals']?>">
+        <div class="row col col-12 pb-3  ">
+        
+        <div class="card">
+          <div class="card-header">เลือกบ้าน</div>
+          <div class="card-body"  >
+          <div class=" col-auto col-12   row  pt-3 ps-lg-3  m-4"   >
+          <div class="home card col-12 col-lg-4  bg-success "   >
+          <div class=" card-header text-center bi-house-fill   text-light">หลังที่ <?php echo @$id_housing?></div>
+          <div class="card-body text-center  bg-light">เลขที่   <?php echo @$noroom?> <br>เขต <?php echo @$housingrow[$dhousingrow]?> </div>
+          </div>
+          <input  type="hidden"   id="id_housing" name="id_housing" value="<?php echo @$id_housing?>"    >
+                  
+                  
+                  
+                  
+        </div>
+        <?php echo tb_housing() ;?></div>
+        </div>
+        </div>
+
+        <div class="card row col-12 pb-3">
+          <div class="card-header">แบบฟอร์มบันทึกบ้านชำรุด</div>
+          <div class="card-body col-auto col-12  col-lg-4    ps-lg-3  "   >
+            <label class="form-label mt-3 col-12  ">วันที่</label>
+            <!-- <input type="button" class="dateclick"  >  -->
+            <input class="form-control <?php echo @$err['date'];?>"  type="text" id="date" name="date" value="<?php echo (isset($date) ? $date : date('Y-m-d')) ?>"  placeholder="เลขที่บ้าน หรือ บ้านหลังที่"  >
+                      
+                    
+          </div>
+          <div class=" col-auto col-12  col-lg-12    ps-lg-3  "   >
+            <label class="form-label mt-3 col-12  ">ข้อมูลบ้านชำรุด</label>
+                    <!-- <input type="button" class="dateclick"  >  -->
+            <textarea class="form-control <?php echo @$err['lists'];?>"  type="text" id="lists" name="lists"    placeholder="ช้อมูลบ้านชำรุด"  >
+            <?php echo (isset($lists) ? $lists : '') ?>
+            </textarea>
+          </div>
+          </div>
+            
+          <script>
+          function tb_housing(id,text,room,col="btn-success"){
+          $(".home ").show();
+          $(".home").removeClass("btn-success");
+          $("#id_housing").val(id);
+          console.log(id);
+          $(".home .card-header").html("หลังที่ " + id  );
+          $(".home .card-body").html("เลขที่ " + text + " <br>เขต " + room);
+          }
+          </script>
+          </div>
+          <script>
+          $("#date").datepicker({
+          language: "th",
+          format:  'yyyy-mm-dd',
+          } ) 
+          </script>
+          <div class="d-flex  col-auto col-12 col-lg-8 pt-lg-4"><button class="btn btn-success mt-2" type="submit">บันทึก</button></div>
+                
+        </div>
+      </form>
+            
+    </div> 
+    <script src="js/bootstrap.min.js"></script>
+
+  </body>
+</html>

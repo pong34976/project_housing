@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<script src="js/bootstrap.min.js"></script>
+
+<script src="js/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="js/jquery.dataTables.js"></script>
+<table class="table ">
+<thead class="bg-warning" style="border: 1ch ; border-color: white;">
+    <tr><td width="25">no.</td><td>รายงาน</td> <td></td></tr>
+</thead>
+<tbody class="bg-light">
+    <tr><td>1</td><td>รายงานข้อมูลสิทธิ์ผู้ใช้งาน</td> <td><a href="auth_page.php?view=r_login&page=report">link</a></td></tr>
+    <tr><td>2</td><td>รายงานข้อมูลผู้เข้าพัก</td> <td><a href="auth_page.php?view=r_user&page=report">link</a></td></tr>
+    <tr><td>3</td><td>รายงานข้อมูลส่งข้อมูลบ้าน</td> <td><a href="auth_page.php?view=r_housing&page=report">link</a></td></tr>
+    <tr><td>4</td><td>รายงานข้อมูลระบบจัดการเข้า-ออก</td> <td><a href="auth_page.php?view=r_check&page=report">link</a> </td></tr>
+    <tr><td>5</td><td>รายงานข้อมูลระบบการส่งข้อมูลบ้านชำรุด </td> <td><a href="auth_page.php?view=r_damaged&page=report">link</a> </td></tr>
+    <tr><td>6</td><td>รายงานข้อมูลระบบการส่งข้อมูลซ่อมแซมบ้านพัก </td> <td><a href="auth_page.php?view=r_repair&page=report">link</a> </td></tr>
+</tbody>
+</table>
+<script>
+    $('.table').DataTable(  );
+ </script>

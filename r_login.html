@@ -1,0 +1,54 @@
+<style>
+    textarea[disabled]{
+        border: none !important;
+        background-color: white;
+        color: black;
+    }
+    div.ariapaper{
+        border: 1px inset  ; border-color: black   ;   background-color: white;
+    }
+ 
+
+    @media print {
+  /* @page {
+    margin: 2.5cm;
+    size: A4 landscape;  
+  } */
+    @page {
+    margin: 2.5cm;
+    size: A4  ;  
+  }
+  nav {
+    display:none !important;
+  }
+     .menu-bg {
+    display:none !important;
+  }
+  .btn{
+    display:none !important;
+  }
+  div.ariapaper{
+   padding: 0px !important;
+   margin: 0px !important;
+     border: none !important;
+    width: 210mm !important; 
+   margin-top: 0px !important;
+  }
+     .alert{
+        display:none !important;
+  }
+}
+</style>
+<?php
+
+?>
+<button class="btn btn-primary" onclick="print()">พิมพ์</button>
+<div class="ariapaper" style="">
+<h1 class="text-center">รายงานข้อมูลสิทธิ์ผู้ใช้งาน</h1>
+มีพนักงานทั้หมด <?=$countrow;?> คน
+ <table class="table table-ariapaper"   > 
+     <thead><tr><td>ชื่อบัญชีผู้ใช่</td><td>ชื่อ-นามสกุล</td><td>ระดับสมาชิก</td></tr></thead>
+     <?=$tables?>
+     </table>
+    
+</div>

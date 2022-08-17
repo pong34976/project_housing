@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>house</title>
+
+<link rel="icon" type="image/gif/png" href="imagesysetm/hou.png">
+<head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/icon/bootstrap-icons.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .fs-4:before {
+            display: inline-block;
+            height: 50px;
+            width: 50px;
+            margin-right: 5px;
+
+        }
+
+        .bi-key::before {
+            content: "" !important;
+            background: url(imagesysetm/employee.png)no-repeat 0 0;
+            background-size: 50px 50px;
+
+        }
+
+        .bi-box-arrow-in-up::before {
+            content: "" !important;
+            background: url(imagesysetm/skyscrapers.png)no-repeat 0 0;
+            background-size: 50px 50px;
+
+        }
+
+        .bi-house-door-fill::before {
+            content: "" !important;
+            background: url(imagesysetm/house.png)no-repeat 0 0;
+            background-size: 50px 50px;
+
+        }
+
+        .bi-file-person-fill::before {
+            content: "" !important;
+            background: url(imagesysetm/man.png)no-repeat 0 0;
+            background-size: 50px 50px;
+        }
+
+        .bi-cone-striped::before {
+            content: "" !important;
+            background: url(imagesysetm/broken.png)no-repeat 0 0;
+            background-size: 50px 50px;
+        }
+
+        .bi-hammer::before {
+            content: "" !important;
+            background: url(imagesysetm/repair.png)no-repeat 0 0;
+            background-size: 50px 50px;
+        }
+
+        .bi-file-spreadsheet::before {
+            content: "" !important;
+            background: url(imagesysetm/report.png)no-repeat 0 0;
+            background-size: 50px 50px;
+        }
+
+        .head-bg {
+            background-color: black !important;
+            /* background-image: url(imagesysetm/cloud.jpg); */
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+
+        .menu-bg {
+            background-color: black !important;
+            /* background-image: url(https://youimg1.tripcdn.com/target/100g1f000001gqxfo339F.jpg?proc=source%2Ftrip);   */
+
+
+        }
+    </style>
+    <style>
+        .btn {
+            padding-top: 0px !important;
+            padding-bottom: 0px !important;
+            margin-top: 0px !important;
+            margin-bottom: 0px !important;
+        }
+
+        .btn-sm {
+            padding-top: 0px !important;
+            padding-bottom: 0px !important;
+            margin-top: 0px !important;
+            margin-bottom: 0px !important;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark   head-bg">
+        <div class="container-fluid  ">
+            <a href="" class="navbar-brand text-light">
+                <h4>Housing ADMIN</h4>
+            </a>
+
+            <div href="" class="navbar-brand text-end">
+                <a class="me-3 text-light  bi-nut" href="http://"></a>
+                <a class=" text-light bi-lock " href="logout.php"></a>
+                <!-- bi-box-arrow-right -->
+
+            </div>
+
+        </div>
+
+    </nav>
+    <style>
+        #menu li:hover {
+            transition: 0.5s;
+            background-color: darkblue;
+
+        }
+    </style>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="col-auto col-md-3 col-xl-3 px-sm-2 px-0  menu-bg    " style="padding-right: 0 !important ">
+                <!-- MENU-->
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100"
+                    style="padding: 0px !important; margin: 0px !important;">
+                    <a href="/"
+                        class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                        <span class="fs-5 d-none d-sm-inline text-info">
+                            <h4> เมนู</h4>
+                        </span>
+                    </a>
+                    <!-- <button class="btn btn-warning btn-toggle
+                         align-items-center rounded" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                        Home
+                      </button>
+                      <div class="collapse show   " id="home-collapse" style="">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                          <li><a href="#" class="link-warning rounded">Overview</a></li>
+                          <li><a href="#" class="link-dark rounded">Updates</a></li>
+                          <li><a href="#" class="link-dark rounded">Reports</a></li>
+                        </ul>
+                      </div> -->
+                    <ul class="nav  nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start text-wrap h4 w-100"
+                        id="menu">
+                        <li class="nav-item">
+                            <!-- <a href="?view=list&page=pmis" class="nav-link align-middle px-0 ">
+                                <i class="fs-4 bi-file-lock2"></i> <span class="ms-1 d-none d-sm-inline text-warning <?php echo @PMIS?>">ข้อมูลสิทธิ์</span>
+                            </a>
+                          -->
+                        </li>
+                        <li class="nav-item w-100 <?php echo @LOGIN?>">
+                            <a href="?view=list&page=login" class="nav-link align-middle px-0 ">
+                                <i class="fs-4 bi-key"></i> <span
+                                    class="  ms-1 d-none d-sm-inline text-warning <?php echo @LOGIN?>">สิทธิ์ผู้ใช้งาน</span>
+                            </a>
+
+                        </li>
+                        <li class="nav-item w-100 <?php echo @USER?>">
+                            <a href="?view=list&page=user" class="nav-link align-middle px-0 ">
+                                <i class="fs-4 bi-file-person-fill"></i> <span
+                                    class="   ms-1 d-none d-sm-inline text-warning <?php echo @USER?>">ระบบจัดการข้อมูลผู้เข้าพัก</span>
+                            </a>
+
+                        </li>
+                        <li class="nav-item w-100 <?php echo @HOUSING?>">
+                            <a href="?view=list&page=housing" class="nav-link align-middle px-0 ">
+                                <i class="fs-4 bi-house-door-fill"></i> <span
+                                    class="ms-1 d-none d-sm-inline text-warning <?php echo @HOUSING?>">ระบบจัดการส่งข้อมูลบ้าน</span>
+                            </a>
+
+                        </li>
+                        <li class="nav-item w-100 <?php echo @CHECK?>">
+                            <a href="?view=list&page=check" class="nav-link align-middle px-0 ">
+                                <i class="fs-4 bi-box-arrow-in-up"></i> <span
+                                    class="ms-1 d-none d-sm-inline text-warning <?php echo @CHECK?>">ระบบจัดการเข้า-ออก</span>
+                            </a>
+
+                        </li>
+
+                        <li class="nav-item w-100 <?php echo @DAMAGED?>">
+                            <a href="?view=list&page=damaged" class="nav-link align-middle px-0 ">
+                                <i class="fs-4 bi-cone-striped"></i> <span
+                                    class="ms-1 d-none d-sm-inline text-warning <?php echo @DAMAGED?>   ">ระบบการส่งข้อมูลบ้านชำรุด
+                                </span>
+                            </a>
+
+                        </li>
+
+                        <li class="nav-item w-100 <?php echo @REPAIR?>">
+                            <a href="?view=list&page=repair" class="nav-link align-middle px-0 ">
+
+                                <i class="fs-4 bi-hammer"></i> <span
+                                    class="ms-1 d-none d-sm-inline text-warning <?php echo @REPAIR?>">
+                                    ระบบการส่งข้อมูลซ่อมแซมบ้านพัก</span>
+
+                            </a>
+
+                        </li>
+                        <li class="nav-item w-100 <?php echo @REPORT?>">
+                            <a href="?view=list&page=report" class="nav-link align-middle px-0 ">
+                                <i class="fs-4 bi-file-spreadsheet                                "></i> <span
+                                    class="ms-1 d-none d-sm-inline text-warning <?php echo @REPORT?>">รายงาน</span>
+                            </a>
+
+                        </li>
+                        <!-- <li class="nav-item">
+                            <button href="#" class="nav-link align-middle px-0 " data-bs="">
+                                <i class="fs-4 bi-house-door-fill"></i> <span class="ms-1 d-none d-sm-inline text-warning"data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">บ้านพัก</span>
+                            </button>
+                             
+                        </li> -->
+                        <div class="collapse show   " id="home-collapse" style="">
+                            <!-- <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                              <li  class="  bi-list"><a href="#" class="link-warning rounded">ข้อมูลบ้านพัก</a></li>
+                              <li  class="  bi-list"><a href="#" class="link-warning rounded">ข้อมูลเข้าพัก</a></li>
+                              <li  class="  bi-list"><a href="#" class="link-warning rounded">ข้อมูลออก</a></li>
+                            </ul> -->
+                        </div>
+                    </ul>
+                    <hr>
+                    <!-- <div class="dropdown pb-4 "> 
+                    </div> -->
+                </div>
+            </div>
+            <style>
+                #homepage {
+                    background-image: url(imagesysetm/load.gif);
+                    background-position: 30%;
+                    background-size: auto 80%;
+                    background-repeat: no-repeat;
+
+                }
+            </style>
+            <div id="homepage" class="col py-3">
+                <?php include("control.php")?>
+            </div>
+            <style>
+                #homepage {
+                    background-image: none !important;
+                }
+            </style>
+        </div>
+    </div>
+
+
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

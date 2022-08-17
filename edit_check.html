@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เพิ่ม</title>
+</head>
+
+<!-- CSS LOAD START -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+ 
+<link rel="stylesheet" href="css/icon/bootstrap-icons.css">
+<script src="js/bootstrap.min.js"></script>
+<!-- JAVASCRIPT LOAD START -->
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="locales/bootstrap-datepicker.th.min.js"></script>
+<body> 
+  <div class="container-sm ">
+      <h3>เพิ่ม</h3>
+ <nav aria-label="breadcrumb">
+
+  <ol  class="breadcrumb">
+    <!-- <li class="breadcrumb-item"><a href="">หน้าแรก</a> </li> -->
+    <li class="breadcrumb-item"><a href="?view=list&page=check">รายการ</a> </li>
+    <li class="breadcrumb-item active" aria-current="page"> เพิ่มข้อมูล </li>
+  </ol>
+  
+ </nav>
+
+      <hr> <form action="" method="post" id="form1" name="form1"  enctype="multipart/form-data">
+      <div class="row row-cols-auto">
+        <div class=" col-auto col-12   row  pt-3 ps-lg-3  "   >
+          <!-- <label class="form-label mt-3 col-12  ">บ้านหลังที่</label> -->
+          <div class="home card col-12 col-lg-4  bg-success "   >
+            <div class=" card-header text-center bi-house-fill  bg-success text-light">หลังที่ <?php echo @$id_housing?></div>
+  <div class="card-body text-center  bg-light">เลขที่ <?php echo @$noroom?> <br>เขต <?php echo  $housingrow[$status]?></div>
+          </div>
+          <input  type="hidden"   id="id_housing" name="id_housing" value="<?php echo @$id_housing?>"    >
+         <input  type="hidden"   id="id_check" name="id_check" value="<?php echo @$id_check?>"    >
+         
+          
+          
+      </div>
+      
+        <div class=" col-auto col-12  col-lg-4  row   ps-lg-3  "   >
+          <label class="form-label mt-3 col-12  ">วันที่</label>
+          <!-- <input type="button" class="dateclick"  >  -->
+          <input class="form-control <?php echo @$err['date'];?>"  type="text" id="date" name="date" value="<?php echo (isset($date) ? $date : date('Y-m-d')) ?>"  placeholder="เลขที่บ้าน หรือ บ้านหลังที่"  >
+          
+          
+      </div>
+        <div class=" col-auto col-12  col-lg-4  row   ps-lg-3  "   >
+          <label class="form-label mt-3 col-12  ">ผู้เข้าพัก</label>
+          <input type="hidden" name="id_log" id="id_log" value="<?php echo $_SESSION['id']?>"> 
+          <input class="form-control <?php echo @$err['idcard'];?>" list="datalistOptions" id="idcard" name="idcard" value="<?php echo @$idcard?>"  placeholder="ชื่อหรือ รหัสประชาชน ผู้เข้าพัก"  >
+          <datalist id="datalistOptions"> 
+            <?php echo tb_user() ;?>
+          </datalist>
+          
+      </div>
+     <div class="row col col-12 pt-5 ">
+      <!-- <div class="card col-1">
+        <div class="card-header bi-house-fill"> </div>
+        <div class="card-body">sss</div>
+      </div> -->
+     
+  <?php echo tb_housing() ;?>
+  <script>
+    function tb_housing(id,text,room){
+      $(".home ").show();
+ $("#id_housing").val(id);
+ $(".home .card-header").html("หลังที่ " + id  );
+ $(".home .card-body").html("เลขที่ " + text + " <br>เขต " + room);
+    }
+  </script>
+  </div>
+  <script>
+ 
+    $("#date").datepicker({
+   language: "th",
+ 
+   format:  'yyyy-mm-dd',
+ 
+ 
+} ) 
+</script>
+         
+          <div class="d-flex  col-auto col-12 col-lg-8 pt-lg-4"><button class="btn btn-success mt-2" type="submit">บันทึก</button></div>
+      
+        </div>  </form>
+        
+  </div> 
+ 
+  <script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>

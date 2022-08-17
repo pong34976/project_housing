@@ -1,0 +1,67 @@
+<style>
+    textarea[disabled]{
+        border: none !important;
+        background-color: white;
+        color: black;
+    }
+    div.ariapaper{
+        border: 1px inset  ; border-color: black   ;   background-color: white;
+    }
+.table-ariapaper{
+    /* border-style: none !important; */
+    border-color: white !important;
+}
+
+    @media print {
+  /* @page {
+    margin: 2.5cm;
+    size: A4 landscape;  
+  } */
+    @page {
+    margin: 2.5cm;
+    size: A4  ;  
+  }
+  nav {
+    display:none !important;
+  }
+     .menu-bg {
+    display:none !important;
+  }
+  .btn{
+    display:none !important;
+  }
+  div.ariapaper{
+   padding: 0px !important;
+   margin: 0px !important;
+     border: none !important;
+    width: 210mm !important; 
+   margin-top: 0px !important;
+  }
+     .alert{
+        display:none !important;
+  }
+}
+</style>
+<button class="btn btn-primary" onclick="print()">พิมพ์</button>
+<div class="ariapaper" style="">
+<h1 class="text-center">ใบเสนอราคา</h1>
+ <table class="table table-ariapaper"  >
+<tr>
+    <td width="200"><h3>วันที่</h3></td><td ><h3><?php echo $date_re;?></h3></td> <td class="text-end" ></td> <td class="text-end" width="200"><h3>เลขที่แจ้ง <?php echo $pad_number; ?></h3></td>
+</tr>
+
+
+  
+    <tr>
+        <td ><h3>รายละเอียด</h3></td><td  width="100"><h3><textarea readonly disabled style="height: 400px !important;"> <?php echo $list;?></textarea>
+        </h3></td>    <td class="text-end" colspan="2"><h3>ราคา  <?php echo $price;?> บาท</h3></td>
+    </tr>
+    <tr>
+        <td width="100"><h3> </h3></td><td  ><h3> 
+ 
+        </h3></td> <td colspan="3" ><h3>ลายเซ็น................<br><?=date("d/m/Y")?> </h3> </td>  
+    </tr>
+    
+     </table>
+    
+</div>
