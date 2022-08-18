@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เพิ่ม</title>
+</head>
+
+<!-- CSS LOAD START -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+ 
+<link rel="stylesheet" href="css/icon/bootstrap-icons.css">
+<script src="js/bootstrap.min.js"></script>
+<!-- JAVASCRIPT LOAD START -->
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="locales/bootstrap-datepicker.th.min.js"></script>
+<body> 
+  <div class="container-sm ">
+     
+ <nav aria-label="breadcrumb">
+
+  <ol  class="breadcrumb">
+    <!-- <li class="breadcrumb-item"><a href="">หน้าแรก</a> </li> -->
+    <li class="breadcrumb-item"><a href="?view=list&page=repair">รายการ</a> </li>
+    <li class="breadcrumb-item active" aria-current="page"> แก้ไข </li>
+  </ol>
+  
+ </nav>
+
+      <hr> <form class="form-control"  action="?view=edit&page=repair" method="post">
+        <div class="modal-body">
+          
+           
+      <div class="container ">
+        <input type="hidden"   name="repair_id" id="myid" value="<?php  echo $repair_id ?>"  readonly required>
+         <div class="row  ">
+          <label class="form-label col-6"> เลขที่ใบแจ้ง</label>
+          
+          <div class="input-group">
+            <?=$repair_id?>
+            <input type="hidden"  class="form-control <?php echo @$err['dam_id'];?> "  name="dam_id" value="<?php echo $dam_id?>" required>
+         
+       
+     </div>
+        <div class="row  ">
+          <label class="form-label col-6">วันที่ส่งซ่อม</label>
+          
+          <div class="input-group">
+            <input type="date"  class="form-control <?php echo @$err['date_re'];?> "  name="date_re" value="<?php echo $date_re?>" required>
+         
+       
+     </div>
+     <label class="form-label col-6">ค่าซ่อม ราคา</label>
+          <div class="input-group">
+           
+            <input type="number" name="price" class="form-control" value="<?php echo $price?>"  required aria-label="กรอกเป็นจำนวนเงิน">
+            <span class="input-group-text">บาท</span>
+       
+          </div>
+  </div>
+      </div>
+        </div>
+        <div class="modal-footer">
+          
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button type="submit"  class="btn btn-success">ยื่นยัน</button>
+        </div>
+       </form>
+        
+  </div> 
+ 
+  <script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+ 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+</head>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/icon/bootstrap-icons.css">
+<script src="js/bootstrap.min.js"></script>
+
+<script src="js/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+ 
+<script type="text/javascript" charset="utf8" src="js/jquery.dataTables.js"></script>
+ 
+<body>
+  <div class="container-md ">
+
+      
+        <h3>ระบบจัดการส่งข้อมูลบ้าน</h3>
+<div class="container">
+  <div class="row">
+ <div class="col-6"> เลขที่บ้าน </div> <div class="col-6"> <?php echo @$noroom?> </div>
+  <div class="col-6"> เขต </div>  <div class="col-6"> <?php echo @$housingrow?>  </div>
+  <div class="col-6"> สถานะบ้าน </div>  <div class="col-6"> <?php echo status($status)?>  </div>
+ <?php if($idcard!=1){?>
+  <b>ผู้เข้าพัก</b>
+ 
+   
+  <div class="col-6">  รหัสประชาชน </div>  <div class="col-6"> <?php echo $idcard?>  </div>
+  <div class="col-6">  ชื่อ </div>  <div class="col-6"> <?php echo $prefix." ".$rname."  ".$lname?>  </div>
+ <div class="col-6">  รูป </div>  <div class="col-6">  <img  class="img-fluid" style="width:80px;" loading="lazy"  src="images/<?php echo $img ?>" alt=""> </div>
+
+  <?php }?>
+</div>
+    </div>
+  </div>
+</body>
+</html>

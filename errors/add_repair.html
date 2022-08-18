@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+ 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+</head>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<script src="js/bootstrap.min.js"></script>
+
+<script src="js/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="js/jquery.dataTables.js"></script>
+<body>
+
+  <div class="container-md ">
+    <nav aria-label="breadcrumb">
+
+      <ol  class="breadcrumb">
+        <!-- <li class="breadcrumb-item"><a href="">หน้าแรก</a> </li> -->
+        <li class="breadcrumb-item"><a href="?view=list&page=repair">รายการ</a> </li>
+        <li class="breadcrumb-item active" aria-current="page"> เพิ่มข้อมูล </li>
+      </ol>
+      
+     </nav>
+      <h3>เลือกรายการ</h3>
+      <div class=" row ">
+ 
+         <!-- <button class="btn btn-warning col-lg-1 col-sm-2  col-4">ค้นหา</button> -->
+      <div class=" col text-end">
+ 
+      </div>
+      </div>
+     
+      <hr> 
+      <?php  if(isset($tables) && !empty($tables) ){?>
+        <table class="table table-hover text-center  align-middle table-striped table-bordered table-sm" id="myTables">
+          <thead class=" table-primary" >
+            <tr >
+          
+              <td class="col th-sm" >วันที่</td>
+              <td class="col th-sm" >บ้าน</td>
+              <td class="col th-sm" >รายการ</td>
+              <td class="col th-sm" onclick="">ตั้งค่า</td>
+            </tr>
+            
+          </thead>
+          <tbody    id="myTable">
+            <?php  echo @$tables ?>
+          </tbody>
+        </table>
+      
+        <?php  }else{?>
+          <h1 class="alert alert-danger">ไม่มีข้อมูล</h1>
+       <?php  }?>
+    <script>
+       $('.table').DataTable(  );
+    </script>
+  </div>
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content ">
+        <div class="modal-header bg-warning">
+          <h5 class="modal-title" id="exampleModalLabel"> ส่งซ่อม </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form class="form-control"  action="?view=add&page=repair" method="post">
+        <div class="modal-body">
+          
+           
+      <div class="container ">
+        <input type="text"   name="dam_id" id="myid"  readonly required>
+        <textarea class="d-none" name="list" id="list"  cols="30" rows="10"></textarea>
+        <div class="row  ">
+          <label class="form-label col-6">วันที่ส่งซ่อม</label>
+          
+          <div class="input-group">
+            <input type="date"  class="form-control"  name="date_re" value="<?php echo date('Y-m-d')?>" required>
+         
+       
+     </div>
+     <label class="form-label col-6">ค่าซ่อม ราคา</label>
+          <div class="input-group">
+           
+            <input type="number" name="price" class="form-control"  required aria-label="กรอกเป็นจำนวนเงิน">
+            <span class="input-group-text">บาท</span>
+       
+          </div>
+  </div>
+      </div>
+        </div>
+        <div class="modal-footer">
+          
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button type="submit"  class="btn btn-success">ยื่นยัน</button>
+        </div>
+       </form>
+    
+      </div>
+    </div>
+  </div>
+</body>
+</html>

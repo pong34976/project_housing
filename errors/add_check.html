@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เพิ่ม</title>
+</head>
+
+<!-- CSS LOAD START -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+ 
+<link rel="stylesheet" href="css/icon/bootstrap-icons.css">
+<script src="js/bootstrap.min.js"></script>
+<!-- JAVASCRIPT LOAD START -->
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="locales/bootstrap-datepicker.th.min.js"></script>
+ 
+<body> 
+  <div class="container-sm ">
+      <h3>เพิ่ม</h3>
+ <nav aria-label="breadcrumb">
+
+  <ol  class="breadcrumb">
+    <!-- <li class="breadcrumb-item"><a href="">หน้าแรก</a> </li> -->
+    <li class="breadcrumb-item"><a href="?view=list&page=check">รายการ</a> </li>
+    <li class="breadcrumb-item active" aria-current="page"> เพิ่มข้อมูล </li>
+  </ol>
+  
+ </nav>
+ 
+      <hr> <form action="" method="post" id="form1" name="form1"  enctype="multipart/form-data">
+      <div class="row row-cols-auto">
+        <div class=" col-auto col-12   row  pt-3 ps-lg-3  "   >
+       
+          <div class="home card col-12 col-lg-4  bg-success "  style="display: none;">
+            <div class=" card-header text-center bi-house-fill  bg-success text-light"></div>
+  <div class="card-body text-center  bg-light"></div>
+          </div>
+          <input  type="hidden"   id="id_housing" name="id_housing" value="<?php echo @$id_housing?>"    >
+        
+         
+          
+          
+      </div>
+      <style>
+        input[type=text],select{
+      padding-top:  0px !important;
+      padding-bottom: 0px !important;
+        }
+      </style>
+        <div class=" col-auto col-12  col-lg-4  row   ps-lg-3  "   >
+          <label class="form-label mt-3 col-12  ">วันที่</label>
+          <!-- <input type="button" class="dateclick"  >  -->
+          <input class="form-control <?php echo @$err['date'];?>   form-control  "  type="text" id="date" name="date" value="<?php echo (isset($date) ? $date : date('Y-m-d')) ?>"  placeholder="เลขที่บ้าน หรือ บ้านหลังที่"  >
+          
+          
+      </div>
+      <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+      
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+ -->
+ <script src="asset/js/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+ <link rel="stylesheet" href="asset/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+
+        <div class=" col-auto col-12  col-lg-4  row   ps-lg-3  "   >
+          <label class="form-label mt-3 col-12  ">ผู้เข้าพัก(  )</label>
+         <select  class=" btn "  id="idcard" name="idcard" value="<?php echo @$idcard?>"  placeholder="ชื่อหรือ รหัสประชาชน ผู้เข้าพัก"> 
+          <?php echo tb_user() ;?>
+          </select>
+        
+          <input type="hidden" name="id_log" id="id_log" value="<?php echo $_SESSION['id']?>"> 
+         
+          <!-- <input class="form-control <?php echo @$err['idcard'];?> dd-selected-value" list="datalistOptions" id="idcard" name="idcard" value="<?php echo @$idcard?>"  placeholder="ชื่อหรือ รหัสประชาชน ผู้เข้าพัก"  >
+          <datalist id="datalistOptions"> 
+            <?php echo tb_user() ;?>
+          </datalist> -->
+          <!-- <form action="" method="post"></form> -->
+       
+      </div>
+      <script>
+         $(document).ready(function () {
+      $('select').selectize({
+          sortField: 'text'
+      });
+  });
+      </script>
+      <script>
+$('#demoShowSelected').ddslick({
+    data: ddData,
+    selectText: "Select your favorite social network",
+});
+$('#showSelectedData').on('click', function () {
+    var ddData = $('#demoShowSelected').data('ddslick');
+    displaySelectedData("0: Getting Selected Dropdown Data" , ddData);
+});
+      </script>
+     
+     <div class="row   ">
+      <!-- <div class="card col-1">
+        <div class="card-header bi-house-fill"> </div>
+        <div class="card-body">sss</div>
+      </div>  class="text-decoration-line-through" -->
+     
+     <h3 class="p-4">ประทวน</h3> <hr>
+  <?php echo tb_housing(1) ;?>
+ 
+  <h3 class="p-4">สัญญาบัตร</h3> <hr>
+  <?php echo tb_housing(2) ;?>
+  <script>
+     $(document).ready(function(){
+
+      $("button.listhome").click(function(){
+        $("button.listhome").removeClass( "border border-5 border-warning" )
+         $("#" + this.id).addClass( "border border-5 border-warning" )
+      })
+     });
+    function tb_housing(id,text,room){
+      $(".home ").show();
+ $("#id_housing").val(id);
+ $(".home .card-header").html("หลังที่ " + id  );
+ $(".home .card-body").html("เลขที่ " + text + " <br>เขต " + room);
+    }
+  </script>
+  </div>
+  <script>
+ 
+    $("#date").datepicker({
+   language: "th",
+ 
+   format:  'yyyy-mm-dd',
+ 
+ 
+} ) 
+</script>
+         
+          <div class="d-flex  col-auto col-12 col-lg-8 pt-lg-4"><button class="btn btn-success mt-2" type="submit">บันทึก</button></div>
+      
+        </div>  </form>
+        
+  </div> 
+ 
+  <script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>

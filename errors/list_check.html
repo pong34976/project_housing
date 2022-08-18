@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+ 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+</head>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<script src="js/bootstrap.min.js"></script>
+
+<script src="js/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="js/jquery.dataTables.js"></script>
+<body>
+  <div class="container-md ">
+      <h3>ระบบจัดการเข้า-ออก บ้านพัก</h3>
+      <div class=" row ">
+        <div class="btn-group col-5">
+          <button class=" btn-sm btn-danger sh " id="sh1" value="ออก."  >ออกบ้านพัก</button>
+          <button class=" btn-sm btn-primary sh" id="sh2" value="เข้า."  >เข้าบ้านพัก</button>
+          <button class=" btn-sm btn-warning  sh" id="sh3" value="" >ทั้งหมด</button>
+          
+         
+        </td>
+        </div>
+        <!-- <input class="form-control-sm mt-sm-0 mt-3  col-12 col-lg-3 p-3 p-sm-0" type="search" id="myInput" onkeyup="myFunction()" onfocus="myFunction()" onclick="myFunction()"  placeholder="ค้นหา">   -->
+         <!-- <button class="btn btn-warning col-lg-1 col-sm-2  col-4">ค้นหา</button> -->
+      <div class=" col text-end">
+<a class="btn btn-primary mt-sm-3 mt-3 mt-md-2 mt-lg-0 col-sm-5 col-12 col-lg-3  p-3 p-sm-1" href="?view=add&page=check">เพิ่มผู้เข้าพัก</a>
+      </div>
+      </div>
+     
+      <hr> 
+      <?php  if(isset($tables) && !empty($tables) ){?>
+        <table class="table table-hover text-center  align-middle table-striped table-bordered table-sm" id="myTables">
+          <thead class=" table-primary" >
+            <tr >
+              <td class="col th-sm" >เลขที่</td>
+              <td class="col th-sm" >วันที่เข้า</td>
+              <td class="col th-sm" >วันที่ออก</td>
+              <td class="col th-sm" >ชื่อผู้พัก</td>
+              <td class="col th-sm" >บ้านเลขที่</td>
+              <td class="col th-sm" >สถานะ</td>
+              <td class="col th-sm" onclick="">ตั้งค่า</td>
+            </tr>
+            
+          </thead>
+          <tbody    id="myTable">
+            <?php  echo @$tables ?>
+          </tbody>
+        </table>
+        <!-- <form action="?view=list&page=user" method="post">  -->
+          <nav aria-label="...">
+          
+          </nav>      </form>
+        <?php  }else{?>
+          <h1 class="alert alert-danger">ไม่มีข้อมูล</h1>
+       <?php  }?> 
+       <script>
+    
+    $.extend(true, $.fn.dataTable.defaults, {
+    "language": {
+              "sProcessing": "กำลังดำเนินการ...",
+              "sLengthMenu": "แสดง_MENU_ แถว",
+              "sZeroRecords": "ไม่พบข้อมูล",
+              "sInfo": "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว",
+              "sInfoEmpty": "แสดง 0 ถึง 0 จาก 0 แถว",
+              "sInfoFiltered": "(กรองข้อมูล _MAX_ ทุกแถว)",
+              "sInfoPostFix": "",
+              "sSearch": "ค้นหา:",
+              "sUrl": "",
+              "oPaginate": {
+                            "sFirst": "เิริ่มต้น",
+                            "sPrevious": "ก่อนหน้า",
+                            "sNext": "ถัดไป",
+                            "sLast": "สุดท้าย"
+              }
+     }
+});
+
+        function filterGlobal (id) {
+       
+      $('.table').DataTable().search(
+          $('#'+ id).val(),
+         false,
+          true
+      ).draw();
+  }
+   
+  function filterColumn (i) {
+      $('.table').DataTable().column(i).search(
+          $('#col'+i+'_filter').val(),
+          false,
+          true
+      ).draw();
+  }
+   
+  $(document).ready(function() {
+    $('.table').DataTable( {
+        "order": [[ 0, "desc" ]]
+    });
+   
+      $('.sh').on( 'click', function () {
+      
+          filterGlobal(this.id);
+      } );
+   
+      $('.sh').on( 'click', function () {
+          filterColumn( $(this).parents('tr').attr('data-column') );
+      } );
+  } );
+          </script>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content ">
+        <div class="modal-header bg-danger">
+          <h5 class="modal-title" id="exampleModalLabel">ยื่นยันการลบ </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form class=""  action="?view=del&page=check" method="post">
+        <div class="modal-body">
+      <div class="container ">
+        <input type="hidden"   name="id" id="myid"  readonly required>
+        <div class="row  ">
+          <div class="col col-12">
+            <label class="form-label" for="id">คุณต้องการลบข้อมูลหรือไม่</label>
+         
+          </div>   
+  </div>
+      </div>
+        </div>
+        <div class="modal-footer">
+          
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
+          <button type="submit"  class="btn btn-success">ยื่นยัน</button>
+        </div>
+       </form>
+    
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="outModal" tabindex="-1" aria-labelledby="outModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content ">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-light" id="outModalLabel">ยืนยันการออกจากบ้านพัก</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <!-- <form class=""  action="?view=del&page=check" method="post"> -->
+          <form  action="?view=checkout&page=check" method="post">  
+        <div class="modal-body">
+      <div class="container ">
+        <input type="hidden"   name="id_housing" id="id_housing"  readonly required>
+            <input type="hidden"   name="id_check" id="idcheck"  readonly required>
+            <label for="checkout_date">ลงวันที่ออก</label>
+            <input type="date"   name="checkout_date" id="checkout_date" value="<?=date('Y-m-d')?>"    required>
+        <div class="row  ">
+    <!-- <div class="col col-12">
+      <label class="form-label" for="id">ชื่อสิทธิ์</label>
+      <input type="text" id="myname" class="form-text form-control "   readonly  >
+    </div>
+    <div class="col col-12">
+      <label class="form-label" for="id">หน้าที่</label>
+      <input type="text" id="showname" class="form-text form-control "   readonly  >
+    </div>      -->
+  </div>
+      </div>
+        </div>
+        <div class="modal-footer">
+          
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
+          <button type="submit"  class="btn btn-success">ยื่นยัน</button>
+        </div>
+       </form>
+    
+      </div>
+    </div>
+  </div>
+</body>
+</html>

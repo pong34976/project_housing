@@ -1,0 +1,160 @@
+<style>
+    textarea[disabled]{
+        border: none !important;
+        background-color: white;
+        color: black;
+    }
+    div.ariapaper{
+        border: 1px inset  ; border-color: black   ;   background-color: white;
+    }
+ 
+
+    @media print {
+  /* @page {
+    margin: 2.5cm;
+    size: A4 landscape;  
+  } */
+    @page {
+    margin: 2.5cm;
+    size: A4  ;  
+  }
+  nav,.bet,.menu-bg,.btn,.alert,.betoo{
+    display:none !important;
+  }
+ 
+  div.ariapaper{
+   padding: 0px !important;
+   margin: 0px !important;
+     border: none !important;
+    width: 210mm !important; 
+   margin-top: 0px !important;
+  }
+ 
+}
+
+
+
+</style>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<script src="js/bootstrap.min.js"></script>
+
+<script src="js/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="js/jquery.dataTables.min.js"></script>
+ 
+<link rel="stylesheet" href="js/dataTables.dateTime.min.css">
+
+  
+
+<script src="js/moment.min.js"></script>
+<script src="js/dataTables.dateTime.min.js"></script>
+
+<script src="js/moment.js"></script>
+<button class="btn btn-primary" onclick="print()">พิมพ์</button>
+<!-- <input 
+    type="text" 
+    id="min"
+    class="date-range-filter"
+    placeholder="From: yyyy-mm-dd">
+
+<input 
+    type="text" 
+    id="max" 
+    class="date-range-filter"
+    placeholder="To: yyyy-mm-dd"> -->
+    <table class="betoo" border="0" cellspacing="5" cellpadding="5">
+        <tbody><tr>
+            <td>วันที่เริ่มต้น :</td>
+            <td><input type="text" id="min" name="min"></td>
+       
+            <td>วันที่สิ้นสุด :</td>
+            <td><input type="text" id="max" name="max"></td>
+        </tr>
+         
+      </tbody></table>
+<div class="ariapaper"   >
+<h2 class="text-center">รายงานข้อมูลระบบการส่งข้อมูลซ่อมแซมบ้านพัก</h2>
+
+
+ <table class="table table-ariapaper display nowrap" id="example"   style="width:100%"  > 
+     <thead><tr><td>เลขใบซ่อม</td><td>วันที่</td><td>รายละเอียด</td><td>ราคา</td></tr></thead>
+     <?=$tables?>
+     </table>
+    
+</div>
+<script>  
+ 
+var minDate, maxDate;
+ i=1;
+ const date = [];
+ // Custom filtering function which will search data in column four between two values
+ $.fn.dataTable.ext.search.push(
+     function( settings, data, dataIndex ) {
+        var min =   new Date(minDate.val());
+            var max =   maxDate.val() ;
+ 
+           min.setHours("0");
+           min.setUTCMinutes("0");
+           min.setUTCSeconds("0");
+         i = i+1;
+        //  console.log( i );
+         var date = stringToDate( data[1] );
+        // console.log(min + " xxx " + max );
+        if (
+            ( min === null && max === null ) ||
+            ( min === null && date <= max ) ||
+            ( min <= date   && max === null ) ||
+            ( min <= date   && date <= max )
+        ){
+            return true;
+        }else{
+        console.log(i + " xxx " + max + "===" +  date  );
+            return false;
+        }
+ 
+
+}
+           
+  
+ );
+ function stringToDate(dateString) {
+    if (!dateString) {
+        return new Date();
+    }
+    var dateList = dateString.split("/");
+    var year = parseInt(dateList[0], 10);
+    var month = parseInt(dateList[1], 10) - 1;
+    var day = parseInt(dateList[2], 10);
+    return new Date(year, month, day);
+}
+ $(document).ready(function() {
+     // Create date inputs
+     minDate = new DateTime($('#min'), {
+        format: 'D MMM YYYY'
+        ,timepicker:false,
+    lang:'th',  // แสดงภาษาไทย
+    inline:true
+     });
+     maxDate = new DateTime($('#max'), {
+        format: 'D MMM YYYY'
+        ,timepicker:false,
+    lang:'th',  // แสดงภาษาไทย
+    inline:true
+     });
+  
+     // DataTables initialisation
+     var table = $('#example').DataTable({  "autoWidth": false,
+         
+        "dom": ' '
+    });
+  
+     // Refilter the table
+     $('#min, #max').on('change', function () {
+         table.draw();
+     });
+ });
+</script>
+

